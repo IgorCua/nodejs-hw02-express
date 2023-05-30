@@ -1,4 +1,3 @@
-// const contactsService = require("../models/index");
 const { HttpError } = require("../helpers/index.js");
 const { ctrlWrapper } = require("../utils/");
 const Contacts = require('../models/contacts.js')
@@ -6,7 +5,7 @@ const Contacts = require('../models/contacts.js')
 const getListContacts = async (req, res) => {
   const contacts = await Contacts.find();
   res.json(contacts); 
-};
+}; 
 
 const getContactById = async (req, res) => {
   const contact = await Contacts.findById(req.params.contactId);
