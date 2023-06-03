@@ -7,9 +7,9 @@ const {
   putContactById,
   updateStatusContact
 } = require('../../controllers/contacts-controller.js');
-const { isValidId } = require('../../middlewares')
+const { isValidId } = require('../../middlewares/index.js')
 const validateBody = require('../../utils/validateBody.js');
-const { contactUpdateSchema, contactUpdateFavoriteSchema } = require('../../schemas')
+const { contactUpdateSchema, contactUpdateFavoriteSchema } = require('../../schemas/index.js')
 
 const router = express.Router()
 

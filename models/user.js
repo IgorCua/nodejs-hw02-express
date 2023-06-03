@@ -17,6 +17,8 @@ const userSchema = new Schema ({
       type: String,
       required: [true, 'Email is required'],
       unique: true,
+    // password validation
+    //   match:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
     subscription: {
       type: String,
@@ -28,3 +30,9 @@ const userSchema = new Schema ({
       default: null,
     },
 });
+
+const User = model('user', userSchema);
+
+module.exports = {
+    User
+}
