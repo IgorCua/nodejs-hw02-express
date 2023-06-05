@@ -1,12 +1,6 @@
-const fs = require("fs/promises");
-const path = require("path");
-const { nanoid } = require("nanoid");
-const { HttpError, handleMongooseError } = require("../helpers/index");
-
-const contactsPath = path.resolve("models/contacts.json");
+const { handleMongooseError } = require("../helpers/index");
 
 const {Schema, model} = require('mongoose');
-
 
 const contactsSchema = new Schema ({
   name: {
@@ -23,12 +17,10 @@ const contactsSchema = new Schema ({
     type: Boolean,
     default: false,
   },
-} 
-,{
+},{
   versionKey: false,
   // timestamps: true
-}
-);
+});
 
 const Contacts = model('contacts', contactsSchema);
 

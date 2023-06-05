@@ -1,24 +1,27 @@
 // const jwt = require('jsonwebtoken');
 const { Schema, model } = require('mongoose');
-const Joi = require('joi');
+// const Joi = require('joi');
 
 const { handleMongooseError } = require('../helpers');
+
+const passwordRegex = '';
+// const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const userSchema = new Schema ({
     owner: {
         type: Schema.Types.ObjectId,
         ref: 'user',
     },
-    password: {
-      type: String,
-      required: [true, 'Password is required'],
-    },
     email: {
       type: String,
       required: [true, 'Email is required'],
       unique: true,
-    // password validation
-    //   match:/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+      // match: emailRegex
+    },
+    password: {
+      type: String,
+      required: [true, 'Password is required'],
+      minLength: 4
     },
     subscription: {
       type: String,
@@ -29,7 +32,12 @@ const userSchema = new Schema ({
       type: String,
       default: null,
     },
+},{
+  versionKey: false,
+  // timestamps: true
 });
+
+userSchema.post("save", handleMongooseError);
 
 const User = model('user', userSchema);
 
