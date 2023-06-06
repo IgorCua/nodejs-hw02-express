@@ -7,11 +7,13 @@ const {
   putContactById,
   updateStatusContact
 } = require('../../controllers/contacts-controller.js');
-const { isValidId } = require('../../middlewares/index.js')
+const { isValidId, authenticate } = require('../../middlewares/index.js')
 const validateBody = require('../../utils/validateBody.js');
 const { contactUpdateSchema, contactUpdateFavoriteSchema } = require('../../schemas/index.js')
 
-const router = express.Router()
+const router = express.Router();
+
+router.use(authenticate)
 
 router.get('/', getListContacts)
 

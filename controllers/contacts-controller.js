@@ -15,7 +15,10 @@ const getContactById = async (req, res) => {
 };
 
 const postContact = async (req, res) => {
-  const contact = await Contacts.create(req.body);
+  const { _id: owner } = req.user;
+  console.log('USER/////', req.user);
+  console.log('BODY/////', req.body);
+  const contact = await Contacts.create({...req.body, owner});
 
   res.status(201).json(contact);
 };
