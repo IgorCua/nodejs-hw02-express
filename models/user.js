@@ -27,6 +27,11 @@ const userSchema = new Schema ({
     token: {
       type: String,
       default: null,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+      // required: true
     }
 },{
   versionKey: false,
