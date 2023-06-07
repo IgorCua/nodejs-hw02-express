@@ -6,12 +6,12 @@ const { validateBody } = require('../../utils');
 const { userRegisterSchema } = require('../../schemas');
 const { authenticate } = require('../../middlewares');
 
-router.post('/users/signup', validateBody(userRegisterSchema), register);
+router.post('/register', validateBody(userRegisterSchema), register);
 
-router.post('/users/login', validateBody(userRegisterSchema), login);
+router.post('/login', validateBody(userRegisterSchema), login);
 
-router.get('/users/current', authenticate, getCurrent);
+router.get('/current', authenticate, getCurrent);
 
-router.post('/users/logout', authenticate, logout);
+router.post('/logout', authenticate, logout);
 
 module.exports = router;

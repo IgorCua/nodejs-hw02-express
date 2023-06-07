@@ -25,10 +25,10 @@ const register = async (req, res) => {
 }
  
 const login = async (req, res) => {
-    const {email, password} = req.body;
+    const {email, password, subscription} = req.body;
 
     const user = await User.findOne({email});
-    const userSubscription = user.subscription;
+    // const userSubscription = user.subscription;
     // console.log(user.password);
     // console.log(subscription);
 
@@ -49,19 +49,24 @@ const login = async (req, res) => {
     res.json({
         token,
         user: {
-            email: email,
-            subscription: userSubscription
+            email: user.email,
+            subscription: user.subscription
         }
     });
 }
 
-const getCurrent = (req, res, next) => {
+const getCurrent = async (req, res, next) => {
     const { authorization = '' } = req.headers;
-    const user = req.user
+    const {email, password} = req.body;
+    const user = req.user;
+
+    // console.log(user);
+
+    // const user = await User.findOne({email});
 
     res.json({
-        user,
-        Authorization: authorization
+        email: user.email,
+        subscription: user.subscription
     })
 }
 
@@ -69,9 +74,7 @@ const logout = async (req, res) => {
     const { _id: id } = req.user;
     await User.findByIdAndUpdate(id, { token: '' });
 
-    res.json({
-        message: 'No content'
-    })
+    res.status(204).json();
 }
 
 module.exports = {
