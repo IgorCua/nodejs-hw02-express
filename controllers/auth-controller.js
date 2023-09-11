@@ -113,7 +113,7 @@ const login = async (req, res) => {
     });
 }
 
-const getCurrent = async (req, res, next) => {
+const getCurrent = async (req, res, _) => {
     const { authorization = '' } = req.headers;
     const {email, password} = req.body;
     const user = req.user;

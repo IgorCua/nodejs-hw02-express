@@ -30,7 +30,7 @@ const postContact = async (req, res) => {
   res.status(201).json(contact);
 };
 
-const deleteContactByid = async (req, res) => {
+const deleteContactById = async (req, res) => {
   const { _id: owner } = req.user;
   const { contactId } = req.params;
 
@@ -79,7 +79,7 @@ module.exports = {
   getListContacts: ctrlWrapper(getListContacts),
   getContactById: ctrlWrapper(getContactById),
   postContact: ctrlWrapper(postContact),
-  deleteContactByid: ctrlWrapper(deleteContactByid),
+  deleteContactById: ctrlWrapper(deleteContactById),
   putContactById: ctrlWrapper(putContactById),
   updateStatusContact: ctrlWrapper(updateStatusContact)
 };

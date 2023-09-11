@@ -3,7 +3,7 @@ const {
   getListContacts,
   getContactById,
   postContact,
-  deleteContactByid,
+  deleteContactById,
   putContactById,
   updateStatusContact
 } = require('../../controllers/contacts-controller.js');
@@ -21,7 +21,7 @@ router.get('/:contactId', isValidId, getContactById);
 
 router.post('/', validateBody(contactUpdateSchema), postContact);
 
-router.delete('/:contactId', isValidId, deleteContactByid);
+router.delete('/:contactId', isValidId, deleteContactById);
 
 router.put('/:contactId', isValidId, validateBody(contactUpdateSchema), putContactById);
 
